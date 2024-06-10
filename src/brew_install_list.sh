@@ -22,7 +22,6 @@ brew_install_list() {
 
     if [[ -f "$file" ]]; then
         log_message "Checking for $install_type applications to install from $file..."
-        # NOT_INSTALLED=$(comm -23 <(sort < "$file") <(brew list --installed-on-request | sort | awk '{print $1}') | strip-empty)
         NOT_INSTALLED=$(comm -23 <(sort "$file") <(brew list -1 --"$install_type"))
 
         if [[ -z "$NOT_INSTALLED" ]]; then
@@ -32,7 +31,6 @@ brew_install_list() {
                 log_message "Installing $app..."
 
                 if [[ "$is_cask" == "true" ]]; then
-                    # if brew install --cask $app &>> "$LOG_FILE"; then
                     if brew install --cask $app; then
                         log_message "$app installed successfully."
                     else
@@ -40,7 +38,6 @@ brew_install_list() {
                     fi
 
                 else
-                    # if brew install $app &>> "$LOG_FILE"; then
                     if brew install $app; then
                         log_message "$app installed successfully."
                     else

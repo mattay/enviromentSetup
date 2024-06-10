@@ -24,13 +24,12 @@ fi
 # Install Teminals
 brew_install_list "lists/casks-terminal.local" "false"
 
-# echo iTerm2 Setup
-# Font -> Fira Code
+echo iTerm2 Setup
+echo "Font -> Fira Code"
+echo "Theme -> Solarized Dark"
 #
-# echo "iTerm2 users need to set both the Regular font and the Non-ASCII Font in \"iTerm > Preferences > Profiles > Text\" to use a patched font"
-# echo "Font: Menlo"
 # echo "Non-ASCII Font: DejaVu Sans Mono for Powerline"
-# Echo "Theme: Solarized Dark"
+
 
 
 # To activate these completions, add the following to your .zshrc:
