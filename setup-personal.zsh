@@ -8,11 +8,11 @@ alias strip-empty="egrep -v '^\s*$'"
 
 # Install local fonts using Homebrew
 log_message "Installing local fonts using Homebrew ..."
-brew_install_list "lists/fonts-casks.local" "true"
+brew_install_list "lists/casks-fonts.local" "true"
 
 # Install local applications using Homebrew
 log_message "Installing local apps using Homebrew ..."
-brew_install_list "lists/apps-personal.local" "false"
+brew_install_list "lists/casks-personal.local" "true"
 
 # Add more files here as needed
 # install_list "lists/another-list.local" "false"
