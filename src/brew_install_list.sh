@@ -1,14 +1,15 @@
-# Function to install a list of casks or apps
+source src/log_message.sh
 
-# Homebrew
+# Setup Homebrew
 if [[ $(command -v brew) == "" ]]; then
-    echo "Installing Hombrew"
+    log_message "Installing Hombrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 else
-    echo "Updating Homebrew"
+    log_message "Updating Homebrew"
     brew update
 fi
 
+# Install a list of casks or formulae with Homebrew
 brew_install_list() {
     local file="$1"
     local is_cask="$2"
@@ -21,7 +22,8 @@ brew_install_list() {
 
     if [[ -f "$file" ]]; then
         log_message "Checking for $install_type applications to install from $file..."
-        NOT_INSTALLED=$(comm -23 <(sort < "$file") <(brew list --installed-on-request | sort | awk '{print $1}') | strip-empty)
+        # NOT_INSTALLED=$(comm -23 <(sort < "$file") <(brew list --installed-on-request | sort | awk '{print $1}') | strip-empty)
+        NOT_INSTALLED=$(comm -23 <(sort "$file") <(brew list -1 --"$install_type"))
 
         if [[ -z "$NOT_INSTALLED" ]]; then
             log_message "All applications in $file are already installed."
